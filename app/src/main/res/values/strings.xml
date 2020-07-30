@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">FirebaseUser</string>
+    <string name="facebook_app_id">563535484323101</string>
+    <string name="fb_login_protocol_scheme">fb563535484323101</string>
+    <string name="registerInLogin">
+        <u>You have not account! Register in this</u>.
+    </string>
+    <string name="forgotPass">
+        <u>You forgot password? Click here!</u>.
+    </string>
+    <string name="title_Cart">Cart</string>
+    <string name="title_News">News</string>
+    <string name="title_Account">Account</string>
+    <string name="title_Home">Home</string>
+    <string name="title_Mess">Mess</string>
+    <string-array name="spinner_status">
+        <item>Helthy</item>
+        <item>Normal</item>
+        <item>Sick</item>
+    </string-array>
+    <string-array name="spinner_khoa">
+        <item>Khoa Sản</item>
+        <item>Khoa Chỉnh Hình</item>
+        <item>Khoa Tim Mạch</item>
+        <item>Khoa Hồi Sức</item>
+    </string-array>
+    <string name="checkRequestSuccess">Requested</string>
+</resources>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minWidth="390dp"
+    android:layout_margin="10dp">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end">
+        <ImageView
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_cancel_24"
+            android:layout_alignParentRight="true"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:orientation="vertical">
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/nameDrUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="User name"
+            app:met_floatingLabel="normal" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/emailDrUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Email or phone number"
+            app:met_floatingLabel="normal" />
+        <Spinner
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spnSpecialist"/>
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/work_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Work place"
+            app:met_floatingLabel="normal" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/lisence"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Listsense"
+            app:met_floatingLabel="normal" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OK"
+            android:id="@+id/btnOK"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+</FrameLayout>
