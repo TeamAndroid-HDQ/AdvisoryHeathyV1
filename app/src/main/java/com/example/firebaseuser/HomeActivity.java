@@ -17,6 +17,7 @@ import com.example.firebaseuser.Model.MedicineModel;
 import com.example.firebaseuser.Model.NewsModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,11 +49,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-
-
         database = FirebaseDatabase.getInstance();
-
         //TODO: Recyclerview of Medicine
         dbMedicine = database.getReference("Medicine");
         recyclerMedicine = (RecyclerView) findViewById(R.id.recyclerViewMedicine);
@@ -125,7 +122,7 @@ public class HomeActivity extends AppCompatActivity {
         listDoctor = new ArrayList<>();
         recyclerDoctor.setLayoutManager(linearLayoutManagerDoctor);
 
-        adapterDoctors = new DoctorRecyclerAdapter(listDoctor);
+        adapterDoctors = new DoctorRecyclerAdapter(listDoctor,this);
         recyclerDoctor.setAdapter(adapterDoctors);
 
         dbDoctor.child("Doctor").addValueEventListener(new ValueEventListener() {
@@ -137,9 +134,14 @@ public class HomeActivity extends AppCompatActivity {
                     String name = ds.child("User_name").getValue().toString();
                     String specialist = ds.child("Specialist").getValue().toString();
                     String imgURL = ds.child("imgURL").getValue().toString();
-                    listDoctor.add(new DoctorModel("",name,"",imgURL,"",specialist,"",""));
+                    String UID = ds.child("UID").getValue().toString();
+                    String email = ds.child("Email").getValue().toString();
+                    String phone_number = ds.child("Phone_number").getValue().toString();
+                    String lisence = ds.child("License").getValue().toString();
+                    String work_place = ds.child("WorkPlace").getValue().toString();
+                    listDoctor.add(new DoctorModel(UID,name,email,imgURL,phone_number,specialist,lisence,work_place));
                 }
-                adapterDoctors = new DoctorRecyclerAdapter(listDoctor);
+                adapterDoctors = new DoctorRecyclerAdapter(listDoctor,HomeActivity.this);
                 recyclerDoctor.setAdapter(adapterDoctors);
                 adapterDoctors.notifyDataSetChanged();
             }
@@ -188,8 +190,8 @@ public class HomeActivity extends AppCompatActivity {
                     return true;
                 case R.id.itemAccount:
                     intent = new Intent(getApplicationContext(),ProfileActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 //                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
                     return true;

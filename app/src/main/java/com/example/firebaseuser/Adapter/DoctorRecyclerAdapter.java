@@ -1,6 +1,7 @@
 package com.example.firebaseuser.Adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -30,20 +32,21 @@ import java.util.ArrayList;
 public class DoctorRecyclerAdapter extends RecyclerView.Adapter<DoctorRecyclerAdapter.DoctorViewHolder> {
 
     private ArrayList<DoctorModel> list;
-    private Activity context;
+    Activity context;
     private int layoutID;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-    public DoctorRecyclerAdapter(ArrayList<DoctorModel> list) {
+    public DoctorRecyclerAdapter(ArrayList<DoctorModel> list, Activity context) {
         this.list = list;
 //        this.recyclerViewClickInterface = recyclerViewClickInterface;
+        this.context = context;
     }
 
     static private RecyclerViewClickInterface recyclerViewClickInterface;
 
-    static class DoctorViewHolder extends RecyclerView.ViewHolder {
+    class DoctorViewHolder extends RecyclerView.ViewHolder {
         TextView tvDoctorName, tvSpecialist, rating;
         ImageView imgDoctor;
         Button btnRequest, btnUnRequest;
@@ -51,6 +54,8 @@ public class DoctorRecyclerAdapter extends RecyclerView.Adapter<DoctorRecyclerAd
         DatabaseReference myRef;
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String doctor_Id;
+        //private Activity context;
+
 
         public DoctorViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -93,13 +98,14 @@ public class DoctorRecyclerAdapter extends RecyclerView.Adapter<DoctorRecyclerAd
             if (user != null) {
                 // Name, email address, and profile photo Url
                 String uid = user.getUid();
-                Log.d("id", uid);
                 myRef = database.getReference("Request");
                 myRef.child(doctorId).child(uid).setValue("1").addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         btnRequest.setVisibility(View.GONE);
                         btnUnRequest.setVisibility(View.VISIBLE);
+                        //Hoi thay
+                        Toast.makeText(context,"REQUEST SUCCESS",Toast.LENGTH_SHORT).show();
                     }
                 });
             }
