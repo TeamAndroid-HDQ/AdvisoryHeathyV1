@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = auth.getCurrentUser();
-                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                             } else {

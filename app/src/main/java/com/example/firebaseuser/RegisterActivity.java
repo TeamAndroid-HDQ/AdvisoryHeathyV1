@@ -39,8 +39,8 @@ public class RegisterActivity extends AppCompatActivity {
     ImageView imageRegister;
     RadioButton radioDr, radioUser;
     RadioGroup radioGroup;
-    ArrayList<String> listStatus,listSpecialist;
-    String status,specialist;
+    ArrayList<String> listStatus, listSpecialist;
+    String status, specialist;
     String email, name, imgUrl, UID, role;
     public final String DEFAULT = "default";
     FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -87,8 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
                     spnSpecialist.setVisibility(View.VISIBLE);
                     edtAllergy.setVisibility(View.GONE);
                     spnStatus.setVisibility(View.GONE);
-                }
-                else if (radioUser.isChecked()) {
+                } else if (radioUser.isChecked()) {
                     edtLisence.setVisibility(View.GONE);
                     edtWork_place.setVisibility(View.GONE);
                     spnSpecialist.setVisibility(View.GONE);
@@ -103,20 +102,20 @@ public class RegisterActivity extends AppCompatActivity {
         listStatus.add("NORMAL");
         listStatus.add("BAD");
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(RegisterActivity.this,android.R.layout.simple_spinner_dropdown_item, listStatus);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(RegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, listStatus);
         spnStatus.setAdapter(arrayAdapter);
         status = spnStatus.getSelectedItem().toString();
 
+
+        //list wanna fix
         listSpecialist = new ArrayList<>();
         listSpecialist.add("GOOD1");
         listSpecialist.add("NORMAL");
         listSpecialist.add("BAD");
 
-        ArrayAdapter arrayAdapter1 = new ArrayAdapter(RegisterActivity.this,android.R.layout.simple_spinner_dropdown_item, listSpecialist);
+        ArrayAdapter arrayAdapter1 = new ArrayAdapter(RegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, listSpecialist);
         spnSpecialist.setAdapter(arrayAdapter);
         specialist = spnSpecialist.getSelectedItem().toString();
-
-
 
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -135,10 +134,10 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Password must be least 6 characters", Toast.LENGTH_SHORT).show();
                 } else {
                     String rl = checkRole(role);
-                    if (edtAllergy.getText().toString().isEmpty()){
+                    if (edtAllergy.getText().toString().isEmpty()) {
                         String allergy = DEFAULT;
                         registerNewUser(edtUsername.getText().toString(), edtEmail.getText().toString(), edtPass.getText().toString(), rl,
-                                edtWork_place.getText().toString(),edtLisence.getText().toString(),specialist,status,allergy);
+                                edtWork_place.getText().toString(), edtLisence.getText().toString(), specialist, status, allergy);
                     }
                 }
 
@@ -232,7 +231,7 @@ public class RegisterActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(this, LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
