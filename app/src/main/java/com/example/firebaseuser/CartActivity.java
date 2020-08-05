@@ -2,11 +2,13 @@ package com.example.firebaseuser;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.firebaseuser.Adapter.ProductRecyclerAdapter;
@@ -29,12 +31,16 @@ public class CartActivity extends AppCompatActivity {
     LinearLayoutManager linearLayoutManagerMedicine;
     FirebaseDatabase database;
     DatabaseReference dbMedicine;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         database = FirebaseDatabase.getInstance();
 
+        toolbar = findViewById(R.id.toolBar);
+        toolbar.setTitle("Cart");
+        setSupportActionBar(toolbar);
         //TODO: Recyclerview of Medicine
         dbMedicine = database.getReference("Medicine");
         recyclerMedicine = (RecyclerView) findViewById(R.id.recyclerProduct);
@@ -73,6 +79,16 @@ public class CartActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -85,7 +101,6 @@ public class CartActivity extends AppCompatActivity {
                     startActivity(intent);
                     return true;
                 case R.id.itemCart:
-                    finish();
                     return true;
                 case R.id.itemMess:
                     intent = new Intent(getApplicationContext(),ContactActivity.class);

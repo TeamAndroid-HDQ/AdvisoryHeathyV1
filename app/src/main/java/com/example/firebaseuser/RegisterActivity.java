@@ -1,6 +1,7 @@
 package com.example.firebaseuser;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -46,6 +48,9 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth auth = FirebaseAuth.getInstance();
     static DatabaseReference mData;
 
+    private static final int IMAGE_PICK_CODE = 1000;
+    private static final int PERMISSION_CODE = 1001;
+
     private void init() {
         imageRegister = findViewById(R.id.imageRegister);
         edtUsername = findViewById(R.id.userName);
@@ -72,11 +77,17 @@ public class RegisterActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Register");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         init();
-        //    auth = FirebaseAuth.getInstance();
         final String userName = edtUsername.getText().toString();
         final String email = edtEmail.getText().toString();
         final String password = edtPass.getText().toString();
         final String confirm = edtConfirmPW.getText().toString();
+
+        imageRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pickImageFormLibrary();
+            }
+        });
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -98,23 +109,27 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         listStatus = new ArrayList<>();
-        listStatus.add("GOOD");
-        listStatus.add("NORMAL");
-        listStatus.add("BAD");
+        listStatus.add("Helthy");
+        listStatus.add("Normal");
+        listStatus.add("Sick");
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(RegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, listStatus);
         spnStatus.setAdapter(arrayAdapter);
         status = spnStatus.getSelectedItem().toString();
 
-
         //list wanna fix
         listSpecialist = new ArrayList<>();
-        listSpecialist.add("GOOD1");
-        listSpecialist.add("NORMAL");
-        listSpecialist.add("BAD");
+        listSpecialist.add("Khoa Sản");
+        listSpecialist.add("Khoa Chỉnh Hình");
+        listSpecialist.add("Khoa Tim Mạch");
+        listSpecialist.add("Khoa Hồi Sức");
+//        listSpecialist.add("Khoa Tim Mạch");
+//        listSpecialist.add("Khoa Tim Mạch");
+//        listSpecialist.add("Khoa Tim Mạch");
+//        listSpecialist.add("Khoa Tim Mạch");
 
         ArrayAdapter arrayAdapter1 = new ArrayAdapter(RegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, listSpecialist);
-        spnSpecialist.setAdapter(arrayAdapter);
+        spnSpecialist.setAdapter(arrayAdapter1);
         specialist = spnSpecialist.getSelectedItem().toString();
 
 
@@ -140,9 +155,32 @@ public class RegisterActivity extends AppCompatActivity {
                                 edtWork_place.getText().toString(), edtLisence.getText().toString(), specialist, status, allergy);
                     }
                 }
-
             }
         });
+    }
+
+    private void pickImageFormLibrary() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, IMAGE_PICK_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
+            imageRegister.setImageURI(data.getData());
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    pickImageFormLibrary();
+                } else Toast.makeText(this, "Permission denied...!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private String checkRole(String role) {

@@ -92,7 +92,6 @@ public class NewsActivity extends AppCompatActivity {
                     startActivity(intent);
                     return true;
                 case R.id.itemNews:
-                    finish();
                     return true;
                 case R.id.itemAccount:
                     intent = new Intent(getApplicationContext(),ProfileActivity.class);

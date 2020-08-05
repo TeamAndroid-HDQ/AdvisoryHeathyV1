@@ -9,11 +9,20 @@ public class DoctorModel {
     String license;
     String imgDoctor;
     String work_place;
+    String request;
+    String role;
+    public String getRequest() {
+        return request;
+    }
+
+    public void setRequest(String request) {
+        this.request = request;
+    }
 
     public DoctorModel() {
     }
 
-    public DoctorModel(String UID, String doctorName, String email, String imgDoctor,String phone_number, String specialist, String license, String work_place) {
+    public DoctorModel(String UID, String doctorName, String email, String imgDoctor, String role,String phone_number, String specialist, String license, String work_place) {
         this.doctorName = doctorName;
         this.email = email;
         this.UID = UID;
@@ -22,8 +31,16 @@ public class DoctorModel {
         this.imgDoctor = imgDoctor;
         this.work_place = work_place;
         this.phone_number = phone_number;
+        this.role = role;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
     public String getDoctorName() {
         return doctorName;
     }
