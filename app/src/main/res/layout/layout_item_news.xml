@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardviewNews"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="106sp"
     android:background="@color/bg_itemRecyclerView"
-    android:layout_margin="5dp"
-    android:elevation="10dp"
-    app:cardCornerRadius="30dp">
+    android:layout_margin="5sp"
+    android:elevation="10sp"
+    app:cardCornerRadius="30sp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,9 +30,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-
                     android:layout_weight="1"
-                    android:layout_marginLeft="20dp"
+                    android:textSize="10sp"
+                    android:layout_marginLeft="25sp"
                     android:gravity="start"
                     android:text="Title:" />
 
@@ -43,6 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:gravity="center"
+                    android:textSize="15sp"
                     android:text="Covid-19 đã có thuốc chữa" />
             </LinearLayout>
 
@@ -56,8 +57,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="25sp"
                     android:gravity="start"
+                    android:textSize="10sp"
                     android:text="Content:" />
 
                 <TextView
@@ -65,8 +67,11 @@
                     android:id="@+id/tvContent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="Covid đã trở lại tại Đà Nẵng" />
+                    android:gravity="left"
+                    android:layout_marginLeft="45sp"
+                    android:maxLines="1"
+                    android:textSize="15sp"
+                    android:text="Covid đã trở lại tại Đà Nẵng aaaaaaaaaaa aaaaaa aaaaaas dasdasasddasdasda" />
             </LinearLayout>
 
             <LinearLayout
@@ -79,8 +84,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="25sp"
                     android:gravity="start"
+                    android:textSize="10sp"
                     android:text="Time:" />
 
                 <TextView
@@ -88,6 +94,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
+                    android:textSize="10sp"
                     android:text="12/07/2020" />
             </LinearLayout>
 

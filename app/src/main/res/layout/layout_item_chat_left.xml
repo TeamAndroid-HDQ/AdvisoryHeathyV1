@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_margin="5sp"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_imgItem"
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:src="@drawable/user"
+            android:visibility="visible"/>
+        <androidx.cardview.widget.CardView
+            android:layout_toRightOf="@+id/profile_imgItem"
+            android:background="@color/bg_itemRecyclerView"
+            app:cardCornerRadius="8dp"
+            android:layout_marginLeft="5sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:background="@color/bg_itemRecyclerView"
+                android:id="@+id/tvContentMessIt"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="30sp"
+                android:textColor="@color/black"
+                android:text="hello"
+                android:paddingLeft="8sp"
+                android:paddingRight="8sp"/>
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+</RelativeLayout>

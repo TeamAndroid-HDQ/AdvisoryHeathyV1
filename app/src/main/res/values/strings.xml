@@ -25,4 +25,12 @@
         <item>Khoa Hồi Sức</item>
     </string-array>
     <string name="checkRequestSuccess">Requested</string>
+    <string name="btnUpdateProfile">Update</string>
+    <string name="btnLogout">Sign out</string>
+    <string name="tvName">Name: </string>
+    <string name="tvStatus">Status: </string>
+    <string name="tvAllergy">Allergy: </string>
+    <string name="cart">Giỏ hàng</string>
+    <string name="hintInEd">Type a message ...</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

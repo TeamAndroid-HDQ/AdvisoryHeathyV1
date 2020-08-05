@@ -57,11 +57,6 @@
             android:layout_marginTop="10dp"
             android:hint="Listsense"
             app:met_floatingLabel="normal" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="OK"
-            android:id="@+id/btnOK"
-            android:layout_marginTop="10dp"/>
+
     </LinearLayout>
 </FrameLayout>

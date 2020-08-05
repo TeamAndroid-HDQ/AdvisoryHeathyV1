@@ -1,13 +1,17 @@
 package com.example.firebaseuser;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.firebaseuser.Adapter.DoctorRecyclerAdapter;
 import com.example.firebaseuser.Adapter.NewsRecyclerAdapter;
@@ -15,14 +19,17 @@ import com.example.firebaseuser.Adapter.ProductRecyclerAdapter;
 import com.example.firebaseuser.Model.DoctorModel;
 import com.example.firebaseuser.Model.MedicineModel;
 import com.example.firebaseuser.Model.NewsModel;
+import com.example.firebaseuser.Model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -45,11 +52,20 @@ public class HomeActivity extends AppCompatActivity {
     ProductRecyclerAdapter productRecyclerAdapter;
     RecyclerView recyclerMedicine;
     LinearLayoutManager linearLayoutManagerMedicine;
+    ArrayList<DoctorModel> listInfoPerson;
+    ArrayList<User> listUSer;
+    String checkRole;
+    String uidCurrent;
+    String name;
+    Bundle bundle;
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         database = FirebaseDatabase.getInstance();
+        uidCurrent = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         //TODO: Recyclerview of Medicine
         dbMedicine = database.getReference("Medicine");
         recyclerMedicine = (RecyclerView) findViewById(R.id.recyclerViewMedicine);
@@ -139,7 +155,8 @@ public class HomeActivity extends AppCompatActivity {
                     String phone_number = ds.child("Phone_number").getValue().toString();
                     String lisence = ds.child("License").getValue().toString();
                     String work_place = ds.child("WorkPlace").getValue().toString();
-                    listDoctor.add(new DoctorModel(UID,name,email,imgURL,phone_number,specialist,lisence,work_place));
+                    String role = ds.child("Role").getValue().toString();
+                    listDoctor.add(new DoctorModel(UID,name,email,imgURL,role,phone_number,specialist,lisence,work_place));
                 }
                 adapterDoctors = new DoctorRecyclerAdapter(listDoctor,HomeActivity.this);
                 recyclerDoctor.setAdapter(adapterDoctors);
@@ -162,47 +179,47 @@ public class HomeActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Intent intent;
+//
+//            String sName,sMail,sUID,sPhone_number,sImg,sRole;
+//            bundle = new Bundle();
             switch (item.getItemId()) {
                 case R.id.itemHome:
-                    finish();
                     return true;
                 case R.id.itemNews:
                     intent = new Intent(getApplicationContext(),NewsActivity.class);
 //                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-                    finish();
                     return true;
                 case R.id.itemMess:
                     intent = new Intent(getApplicationContext(),ContactActivity.class);
 //                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-                    finish();
                     return true;
                 case R.id.itemCart:
                     intent = new Intent(getApplicationContext(),CartActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK;
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-                    finish();
                     return true;
                 case R.id.itemAccount:
                     intent = new Intent(getApplicationContext(),ProfileActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    bundle.putString("NameActive",listUSer.get(0).getEmail());
+//                    intent.putExtras(bundle);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-                    finish();
                     return true;
             }
             return false;
         }
     };
 
+    public void getMyInfo(){
+
+    }
     @Override
     protected void onStop() {
         super.onStop();
-        FirebaseAuth.getInstance().signOut();
     }
 }

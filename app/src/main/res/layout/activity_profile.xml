@@ -6,30 +6,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ProfileActivity">
-
+    <include layout="@layout/layout_tool_bar"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_weight="9">
+        android:layout_weight="9"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:background="@color/mainColor"
             android:gravity="center"
-            android:orientation="vertical"
-            android:background="@color/mainColor">
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/imgAvartar"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
-                android:src="@drawable/user"/>
+                android:src="@drawable/user" />
             <TextView
                 android:id="@+id/tvOldName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="Huynh Duy Quoc"
-                android:textColor="@color/white"
-                android:layout_marginTop="10dp"/>
+                android:textColor="@color/white" />
         </LinearLayout>
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -46,6 +49,7 @@
             android:layout_margin="10dp"
             android:hint="Email"
             app:met_floatingLabel="normal" />
+
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtPhoneNumberProfile"
             android:layout_width="match_parent"
@@ -53,73 +57,85 @@
             android:layout_margin="10dp"
             android:hint="Phone number"
             app:met_floatingLabel="normal" />
+
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtLisenceProfile"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:hint="Lisence"
-            app:met_floatingLabel="normal" />
-        <com.rengwuxian.materialedittext.MaterialEditText
             android:visibility="gone"
+            app:met_floatingLabel="normal" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtWorkPlaceProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:hint="Work place"
+            android:visibility="gone"
             app:met_floatingLabel="normal" />
-        <LinearLayout
-            android:id="@+id/linearSpecialist"
+
+        <TextView
+            android:id="@+id/tvSpnSpecialist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:orientation="vertical"
-            android:visibility="gone"
+            android:text="Specialist"
+            android:visibility="gone" />
+
+        <Spinner
+            android:id="@+id/spnSpecialistProfile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Specialist"/>
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/spnSpecialistProfile"
-                android:prompt="@array/spinner_status"/>
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone" />
+
         <com.rengwuxian.materialedittext.MaterialEditText
-            android:visibility="gone"
             android:id="@+id/edtAllergyProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:hint="Allergy"
-            app:met_floatingLabel="normal" />
-        <LinearLayout
             android:visibility="gone"
-            android:id="@+id/linearStatus"
-            android:layout_width="match_parent"
+            app:met_floatingLabel="normal" />
+
+        <TextView
+            android:id="@+id/tvSpnStatus"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Status"/>
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/spnStatusProfile"
-                android:prompt="@array/spinner_status"/>
-        </LinearLayout>
+            android:text="Status"
+            android:visibility="gone" />
+
+        <Spinner
+            android:id="@+id/spnStatusProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:prompt="@array/spinner_status"
+            android:visibility="gone" />
+        <Button
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnUpdateProfile"
+            android:id="@+id/btnOK"
+            android:layout_marginTop="10dp"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navigationProfile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/navigationProfile"
-            app:menu="@menu/navigation"/>
+            app:menu="@menu/navigation" />
     </LinearLayout>
 </LinearLayout>
